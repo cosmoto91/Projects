@@ -46,8 +46,8 @@
         <br />
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
         <br />
-        <br />
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <br />
         <br />
         <p>
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/a6pabEaB_700w_0.jpg" />
