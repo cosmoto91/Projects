@@ -15,6 +15,7 @@ namespace TestWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Write(sender + " eventargs: " + e);
 
         }
 
@@ -41,6 +42,8 @@ namespace TestWebForm
                 returnedMsg = "You spent " + TextBox1.Text + " minutes at the dealer" + " and more than that, " + Qst;
 
             Label1.Text = returnedMsg;
+            // System.Threading.Thread.Sleep(5000);
+            Response.Redirect("WebForm1.aspx");
         }
     }
 }

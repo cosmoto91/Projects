@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="TestWebForm.TravelForm" %>
 
-<!DOCTYPE html>
+<!DOCTYPE html5>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -8,7 +8,7 @@
     <style type="text/css">
         #form1 {
             height: 467px;
-            width: 728px;
+            width: 343px;
         }
     </style>
 </head>
@@ -44,14 +44,18 @@
         <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" style="background-color:aqua;color:chocolate" BorderStyle="Dashed" Font-Names="Calibri" />
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <br />
+        <asp:Label ID="Label1" runat="server" ></asp:Label>
         <br />
         <br />
         <p>
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/a6pabEaB_700w_0.jpg" />
-        </p>
+            &nbsp;</p>
+        <style="float:left" />
     </form>
+    
+         <p style="float:right;display:flex;align-content:center"> This is the second shiet </p>
+        
 </body>
 </html>
