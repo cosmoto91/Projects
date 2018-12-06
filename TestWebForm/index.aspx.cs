@@ -10,7 +10,7 @@ namespace TestWebForm
     public partial class TravelForm : System.Web.UI.Page
     {
 
-        string Qst, returnedMsg;
+        string Qst, returnedMsg,databaseResponse;
         bool isNumeric;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -42,8 +42,18 @@ namespace TestWebForm
                 returnedMsg = "You spent " + TextBox1.Text + " minutes at the dealer" + " and more than that, " + Qst;
 
             Label1.Text = returnedMsg;
-            // System.Threading.Thread.Sleep(5000);
-            Response.Redirect("WebForm1.aspx");
+
+            // Response.Redirect("WebForm1.aspx");
+            DataAccess_MySQL dbConn = new DataAccess_MySQL();
+
+            dbConn.Settype = "retrieve";
+            dbConn.connect();
+
+            databaseResponse = dbConn.SetqueryReturnedValue;
+
+            Label2.Text = databaseResponse;
+
+            //DataAccess_MySQL.connect(type);
         }
     }
 }
