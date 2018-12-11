@@ -51,12 +51,22 @@
         <br />
         <br />
         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-        <p>
-            &nbsp;</p>
+        <div style="width: 132px; margin-left: 520px">
+            <asp:Label ID="Label3" runat="server" Text="LOGIN AREA"></asp:Label>
+        </div>
+        <p style="height: 35px; width: 1082px; margin-left: 200px">
+            <asp:Label ID="Label4" runat="server" Text="UserName:"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        </p>
         <style="float:left" />
+        <div style="margin-left: 200px">
+            <asp:Label ID="Label5" runat="server" Text="Password:"></asp:Label>
+            <asp:TextBox ID="TextBox3" runat="server" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+        </div>
+        <div style="margin-left: 200px">
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="SignUp" />
+        </div>
     </form>
     
-         <p style="float:right;display:flex;align-content:center"> This is the second shiet </p>
-        
-</body>
+         </body>
 </html>

@@ -12,11 +12,26 @@ namespace TestWebForm
 
         string Qst, returnedMsg,databaseResponse;
         bool isNumeric;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.Write(sender + " eventargs: " + e);
 
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            DataAccess_MySQL dbconn = new DataAccess_MySQL();
+            dbconn.Settype = "login";
+            dbconn.setUserName = TextBox2.Text;
+            dbconn.setPassword = TextBox3.Text;
+            dbconn.connect();
+        }
+        
+
+        protected void TextBox3_TextChanged(object sender, EventArgs e)
+        {
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
