@@ -25,6 +25,9 @@
         <br />
         <asp:Label ID="ErrMsg_1" runat="server"></asp:Label>
         </div>
+        <br />
+        <br />
+        <asp:Button ID ="signUpButton1" runat="server" OnClick ="signUpButton1_Click" Text ="SignUp" Visible="False" />
     </form>
    
          </body>

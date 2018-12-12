@@ -17,8 +17,7 @@ namespace TestWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(sender + " eventargs: " + e);
-
+        
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -37,7 +36,7 @@ namespace TestWebForm
             Aux aux1 = new Aux();
             if (aux1.IsEmpty(loginTextboxUser.Text.ToString()) == true || aux1.IsEmpty(loginTextboxPass.Text.ToString()) == true)
             {
-                ErrMsg_1.Text = "Neither one of the username and the password fields can't be empty";
+                ErrMsg_1.Text = aux1.setErrorIsEmpty;
             }
             else
             {
@@ -47,11 +46,19 @@ namespace TestWebForm
                 dbconn0.connect();
 
                 if (dbconn0.setconnSuccess == true)
-                    Response.Redirect("WebForm1.aspx");
+                    Response.Redirect("~/Pages/WebForm1.aspx");
                 else
-                    ErrMsg_1.Text = "Invalid credentials";
+                {
+                    ErrMsg_1.Text = "Invalid credentials if you want to create a new account, please click to SignUp button below";
+                    signUpButton1.Visible = true;
+                }
             }
 
+        }
+
+        protected void signUpButton1_Click(object sender,EventArgs e)
+        {
+            Response.Redirect("~/Pages/SignUp_page.aspx");
         }
     }
 }

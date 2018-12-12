@@ -7,7 +7,12 @@ namespace TestWebForm.Functions
 {
     public class Aux
     {
-        //string value;
+        static readonly string ErrorIsEmpty = "Username or password fields can't be empty";
+
+        public string setErrorIsEmpty
+        {
+            get { return ErrorIsEmpty; }
+        }
 
         public bool IsEmpty(string input)
         {
