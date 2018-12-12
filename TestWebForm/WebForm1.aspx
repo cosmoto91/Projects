@@ -7,10 +7,11 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+   <form id="form2" runat="server">
         <div>
             <p>2nd Page yeeee</p>
         </div>
-    </form>
+    <asp:Textbox ID="Textbox7" runat="server" Text="Sample TextBox"></asp:Textbox>
+  </form>
 </body>
 </html>

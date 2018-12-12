@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TestWebForm.Functions;
 
 namespace TestWebForm
 {
@@ -20,55 +21,37 @@ namespace TestWebForm
 
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            DataAccess_MySQL dbconn = new DataAccess_MySQL();
-            dbconn.Settype = "login";
-            dbconn.setUserName = TextBox2.Text;
-            dbconn.setPassword = TextBox3.Text;
-            dbconn.connect();
-        }
-        
-
-        protected void TextBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
-            if (RadioButton1.Checked == true)
+
+        }
+
+        protected void loginButton1_Click(object sender,EventArgs e)
+        {
+            DataAccess_MySQL dbconn0 = new DataAccess_MySQL();
+            Aux aux1 = new Aux();
+            if (aux1.IsEmpty(loginTextboxUser.Text.ToString()) == true || aux1.IsEmpty(loginTextboxPass.Text.ToString()) == true)
             {
-                Qst = "Question1 was selected";
+                ErrMsg_1.Text = "Neither one of the username and the password fields can't be empty";
             }
             else
-                Qst = "Question2 was selected";
-            isNumeric = int.TryParse(TextBox1.Text, out int n);
-
-            if (isNumeric == false)
             {
-                returnedMsg = "Lenght of time must be in minutes only";
+                dbconn0.setUserName = loginTextboxUser.Text;
+                dbconn0.setPassword = loginTextboxPass.Text;
+                dbconn0.Settype = "login";
+                dbconn0.connect();
+
+                if (dbconn0.setconnSuccess == true)
+                    Response.Redirect("WebForm1.aspx");
+                else
+                    ErrMsg_1.Text = "Invalid credentials";
             }
-            else
-                returnedMsg = "You spent " + TextBox1.Text + " minutes at the dealer" + " and more than that, " + Qst;
 
-            Label1.Text = returnedMsg;
-
-            // Response.Redirect("WebForm1.aspx");
-            DataAccess_MySQL dbConn = new DataAccess_MySQL();
-
-            dbConn.Settype = "retrieve";
-            dbConn.connect();
-
-            databaseResponse = dbConn.SetqueryReturnedValue;
-
-            Label2.Text = databaseResponse;
-
-            //DataAccess_MySQL.connect(type);
         }
     }
 }

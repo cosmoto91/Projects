@@ -10,6 +10,7 @@ namespace TestWebForm
     public class DataAccess_MySQL
     {
         private string queryReturnedValue,type,username,password;
+        private bool connSuccess,val;
 
         public string SetqueryReturnedValue
         {
@@ -31,7 +32,10 @@ namespace TestWebForm
             get { return setPassword; }
             set { password = value; }
         }
-
+        public bool setconnSuccess
+        {
+            get { return connSuccess; }
+        }
 
 
         public void connect()
@@ -41,9 +45,25 @@ namespace TestWebForm
 
             MySqlCommand mycmd = new MySqlCommand();
             mycmd.Connection = conn;
-            mycmd.CommandType = System.Data.CommandType.Text;
+            mycmd.CommandType = System.Data.CommandType.Text; 
 
             if (type == "login")
+            {
+                mycmd.CommandText = "SELECT COUNT(*) FROM web.authorization WHERE UserName ='" + username + "' AND Password ='" + password+"'";
+                MySqlDataReader dataReadLogin;
+                dataReadLogin = mycmd.ExecuteReader();
+                dataReadLogin.Read();
+
+                queryReturnedValue = dataReadLogin.GetString(0);
+                
+                if(Convert.ToInt32(queryReturnedValue) > 0)
+                {
+                    connSuccess = true;
+                }
+
+            }
+
+            else if (type == "signUp")
             {
                 mycmd.CommandText = "INSERT INTO web.authorization (UserName,Password,Role,CreatedDate)VALUES('" + username + "', '" + password + "', 'User', NOW())";
                 mycmd.BeginExecuteNonQuery();
