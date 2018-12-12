@@ -7,10 +7,8 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
         <div>
             <p>2nd Page yeeee</p>
         </div>
-    </form>
 </body>
 </html>

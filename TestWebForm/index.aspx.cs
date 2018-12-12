@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace TestWebForm
 {
     public partial class TravelForm : System.Web.UI.Page
     {
 
-        string Qst, returnedMsg,databaseResponse;
+        string Qst, returnedMsg,databaseResponse,hash_ret;
         bool isNumeric;
         
 
@@ -22,11 +24,30 @@ namespace TestWebForm
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            DataAccess_MySQL dbconn = new DataAccess_MySQL();
+          /*  DataAccess_MySQL dbconn = new DataAccess_MySQL();
             dbconn.Settype = "login";
             dbconn.setUserName = TextBox2.Text;
             dbconn.setPassword = TextBox3.Text;
             dbconn.connect();
+        */
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(TextBox3.Text));
+
+                StringBuilder sbuilder = new StringBuilder();
+                for(int i = 0; i < hash.Length; i++)
+                {
+                    sbuilder.Append(hash[i].ToString("x2"));
+                }
+
+                hash_ret = sbuilder.ToString();
+
+
+            }
+
+            Label2.Text = hash_ret;
+
+            //byte[] bytes = sha256
         }
         
 
@@ -37,38 +58,6 @@ namespace TestWebForm
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            if (RadioButton1.Checked == true)
-            {
-                Qst = "Question1 was selected";
-            }
-            else
-                Qst = "Question2 was selected";
-            isNumeric = int.TryParse(TextBox1.Text, out int n);
-
-            if (isNumeric == false)
-            {
-                returnedMsg = "Lenght of time must be in minutes only";
-            }
-            else
-                returnedMsg = "You spent " + TextBox1.Text + " minutes at the dealer" + " and more than that, " + Qst;
-
-            Label1.Text = returnedMsg;
-
-            // Response.Redirect("WebForm1.aspx");
-            DataAccess_MySQL dbConn = new DataAccess_MySQL();
-
-            dbConn.Settype = "retrieve";
-            dbConn.connect();
-
-            databaseResponse = dbConn.SetqueryReturnedValue;
-
-            Label2.Text = databaseResponse;
-
-            //DataAccess_MySQL.connect(type);
         }
     }
 }
