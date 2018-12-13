@@ -11,7 +11,11 @@ namespace TestWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+        protected void Button10_Click(object sender, EventArgs e)
+        {
+            Label3.Text = "Button has been clicked";
         }
     }
 }

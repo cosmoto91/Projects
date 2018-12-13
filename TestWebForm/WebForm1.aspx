@@ -10,5 +10,9 @@
         <div>
             <p>2nd Page yeeee</p>
         </div>
+
+        <asp:Label ID="Label3" runat="server"></asp:Label>
+    <br />
+        <asp:Button ID="Button10" runat="server" Text="System Load" OnClick="Button10_Click" />
 </body>
 </html>

@@ -18,7 +18,7 @@ namespace TestWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(sender + " eventargs: " + e);
+           // Response.Write(sender + " eventargs: " + e);
 
         }
 
@@ -46,8 +46,7 @@ namespace TestWebForm
             }
 
             Label2.Text = hash_ret;
-
-            //byte[] bytes = sha256
+            Response.Redirect("WebForm1.aspx");
         }
         
 
