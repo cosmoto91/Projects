@@ -20,7 +20,7 @@ namespace TestWebForm.Pages
             Aux aux1 = new Aux();
             if (aux1.IsEmpty(TextBox_UserName_SignUp.Text.ToString()) == true || aux1.IsEmpty(TextBox_Password_SignUp.Text.ToString()) == true)
             {
-                Label_Error_SignUp.Text = aux1.setErrorIsEmpty;
+                Label_Error_SignUp.Text = aux1.ErrorIsEmpty;
             }
             else
             {
