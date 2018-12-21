@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions\DataAccess_MySQL.cs" />
-    <Compile Include="Functions\IsEmpty.cs" />
+    <Compile Include="Functions\Aux_Functions.cs" />
     <Compile Include="Pages\SignUp_page.aspx.cs">
       <DependentUpon>SignUp_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

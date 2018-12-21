@@ -36,7 +36,7 @@ namespace TestWebForm
             Aux aux1 = new Aux();
             if (aux1.IsEmpty(loginTextboxUser.Text.ToString()) == true || aux1.IsEmpty(loginTextboxPass.Text.ToString()) == true)
             {
-                ErrMsg_1.Text = aux1.setErrorIsEmpty;
+                ErrMsg_1.Text = aux1.ErrorIsEmpty;
             }
             else
             {
