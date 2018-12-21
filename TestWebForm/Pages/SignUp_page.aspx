@@ -15,7 +15,7 @@
             <br />
             <asp:Label Id="Label1" Text="Choose your password:" runat="server"></asp:Label>
             <br />
-            <asp:TextBox Id="TextBox_Password_SignUp" runat="server"></asp:TextBox>
+            <asp:TextBox Id="TextBox_Password_SignUp" runat="server" TextMode="Password"></asp:TextBox>
             <br />
             <asp:Label ID="Label_Error_SignUp" runat="server" Text=""></asp:Label>
             <br />

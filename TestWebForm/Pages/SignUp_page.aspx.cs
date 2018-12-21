@@ -24,7 +24,12 @@ namespace TestWebForm.Pages
             }
             else
             {
-                Label_Error_SignUp.Text = "Will try to contact database to save your credentials.... Later though";
+                DataAccess_MySQL signUp = new DataAccess_MySQL();
+                signUp.Settype = "signUp";
+                signUp.setUserName = TextBox_UserName_SignUp.Text.ToString();
+                signUp.setPassword = TextBox_Password_SignUp.Text.ToString();
+                signUp.connect();
+              //Label_Error_SignUp.Text = "Will try to contact database to save your credentials.... Later though";
             }
         }
     }
