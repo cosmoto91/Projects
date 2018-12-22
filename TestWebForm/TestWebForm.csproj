@@ -87,6 +87,7 @@
     <Content Include="Pages\WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\FileHandler.cs" />
     <Compile Include="Functions\DataAccess_MySQL.cs" />
     <Compile Include="Functions\Aux_Functions.cs" />
     <Compile Include="Pages\SignUp_page.aspx.cs">
@@ -111,6 +112,9 @@
     <Compile Include="Pages\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

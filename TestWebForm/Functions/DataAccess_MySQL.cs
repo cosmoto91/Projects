@@ -40,7 +40,8 @@ namespace TestWebForm
 
         public void connect()
         {
-            MySqlConnection conn = new MySqlConnection("Database=cuivienql;Data Source=DESKTOP-RCGG4OD;User Id=cosmoto;Password=eArendil16");
+             MySqlConnection conn = new MySqlConnection("Database=cuivienql;Data Source=DESKTOP-RCGG4OD;User Id=cosmoto;Password=eArendil16");
+           //  MySqlConnection conn = new MySqlConnection("Database=SourceApp;Data Source=188.121.44.71:3306;User Id=cosmoto;Password=eArendil16");
             conn.Open();
 
             MySqlCommand mycmd = new MySqlCommand();
