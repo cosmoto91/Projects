@@ -28,6 +28,10 @@
         <br />
         <br />
         <asp:Button ID ="signUpButton1" runat="server" OnClick ="signUpButton1_Click" Text ="SignUp" Visible="False" />
+        <br />
+        <br />
+        <asp:Label ID ="testLabel" runat="server"></asp:Label>
+
     </form>
    
          </body>

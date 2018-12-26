@@ -16,7 +16,7 @@ namespace TestWebForm
         }
         protected void uploadButton1_Click(object sender,EventArgs e)
         {
-            string destination;
+            string destination, dataCSV;
 
             destination = Server.MapPath("~" + "\\Files\\");
 
@@ -26,6 +26,11 @@ namespace TestWebForm
             file.SaveFile(destination,uploadFileUpload1);
             uploadGridView1.DataSource = file.DisplayFile(destination + file.FileName);
             uploadGridView1.DataBind();
+
+            FileHandler saveFile = new FileHandler();
+           // dataCSV = saveFile.SaveExerciseFileToDatabase(Server.MapPath("~" + "\\Files\\exercise"));
+           dataCSV = saveFile.SaveExerciseFileToDatabase(destination + file.FileName);
+
         }
     }
 }

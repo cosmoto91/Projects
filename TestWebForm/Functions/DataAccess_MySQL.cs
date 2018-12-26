@@ -9,8 +9,14 @@ namespace TestWebForm
 
     public class DataAccess_MySQL
     {
-        private string queryReturnedValue,type,username,password;
+        private string queryReturnedValue,type,username,password,sqlCommand;
         private bool connSuccess,val;
+
+        public string SqlCommand
+        {
+            get { return sqlCommand; }
+            set { sqlCommand = value; }
+        }
 
         public string SetqueryReturnedValue
         {
@@ -40,13 +46,20 @@ namespace TestWebForm
 
         public void connect()
         {
-             MySqlConnection conn = new MySqlConnection("Database=cuivienql;Data Source=DESKTOP-RCGG4OD;User Id=cosmoto;Password=eArendil16");
-           //  MySqlConnection conn = new MySqlConnection("Database=SourceApp;Data Source=188.121.44.71:3306;User Id=cosmoto;Password=eArendil16");
+            MySqlConnection conn = new MySqlConnection("Server=bosiman11a.ddns.net;Database=cuivienql;Port=3306;User Id=cosmoto;Password=eArendil16");
+            // MySqlConnection conn = new MySqlConnection("Database=cuivienql;Host=DESKTOP-RCGG4OD;User Id=cosmoto;Password=eArendil16");
+            //  MySqlConnection conn = new MySqlConnection("Database=SourceApp;Data Source=188.121.44.71:3306;User Id=cosmoto;Password=eArendil16");
             conn.Open();
 
             MySqlCommand mycmd = new MySqlCommand();
             mycmd.Connection = conn;
             mycmd.CommandType = System.Data.CommandType.Text; 
+
+            if(type == "InsertExercise")
+            {
+                mycmd.CommandText = sqlCommand;
+                mycmd.BeginExecuteNonQuery();
+            }
 
             if (type == "login")
             {
