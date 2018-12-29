@@ -84,9 +84,10 @@
     </Content>
     <Content Include="Pages\SignUp_page.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Pages\WebForm1.aspx" />
+    <Content Include="Pages\ExerciseUpload.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\PopulateDropDown.cs" />
     <Compile Include="Functions\FileHandler.cs" />
     <Compile Include="Functions\DataAccess_MySQL.cs" />
     <Compile Include="Functions\Aux_Functions.cs" />
@@ -105,12 +106,12 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Pages\ExerciseUpload.aspx.cs">
+      <DependentUpon>ExerciseUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Pages\ExerciseUpload.aspx.designer.cs">
+      <DependentUpon>ExerciseUpload.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

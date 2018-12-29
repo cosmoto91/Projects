@@ -46,7 +46,7 @@ namespace TestWebForm
                 dbconn0.connect();
 
                 if (dbconn0.setconnSuccess == true)
-                    Response.Redirect("~/Pages/WebForm1.aspx");
+                    Response.Redirect("~/Pages/ExerciseUpload.aspx");
                 else
                 {
                     ErrMsg_1.Text = "Invalid credentials if you want to create a new account, please click to SignUp button below";

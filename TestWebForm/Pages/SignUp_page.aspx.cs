@@ -29,7 +29,7 @@ namespace TestWebForm.Pages
                 signUp.setUserName = TextBox_UserName_SignUp.Text.ToString();
                 signUp.setPassword = TextBox_Password_SignUp.Text.ToString();
                 signUp.connect();
-              //Label_Error_SignUp.Text = "Will try to contact database to save your credentials.... Later though";
+                Response.Redirect("~/Pages/index.aspx");
             }
         }
     }

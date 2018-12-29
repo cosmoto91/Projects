@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace TestWebForm
 {
@@ -11,6 +12,7 @@ namespace TestWebForm
     {
         private string queryReturnedValue,type,username,password,sqlCommand;
         private bool connSuccess,val;
+        private string[] distinctExercises;
 
         public string SqlCommand
         {
@@ -42,11 +44,16 @@ namespace TestWebForm
         {
             get { return connSuccess; }
         }
+        public string[] DistinctExercises
+        {
+            get { return distinctExercises; }
+            set { distinctExercises = value; }
+        }
 
 
         public void connect()
         {
-            MySqlConnection conn = new MySqlConnection("Server=bosiman11a.ddns.net;Database=cuivienql;Port=3306;User Id=cosmoto;Password=eArendil16");
+            MySqlConnection conn = new MySqlConnection("Server=82.43.85.43;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16");
             // MySqlConnection conn = new MySqlConnection("Database=cuivienql;Host=DESKTOP-RCGG4OD;User Id=cosmoto;Password=eArendil16");
             //  MySqlConnection conn = new MySqlConnection("Database=SourceApp;Data Source=188.121.44.71:3306;User Id=cosmoto;Password=eArendil16");
             conn.Open();
@@ -86,14 +93,37 @@ namespace TestWebForm
             {
                 mycmd.CommandText = "SELECT username FROM web.authorization";
 
-                MySqlDataReader dataRead;
+                MySqlDataReader dataRead; 
                 dataRead = mycmd.ExecuteReader();
                 dataRead.Read();
 
                 queryReturnedValue = dataRead.GetString(0);
             }
-            //queryReturn
-        }
+            else if (type == "retrieveAllExerciseTitles")
+            {
+                int rwcnt,i = 0;
 
+                mycmd.CommandType = System.Data.CommandType.StoredProcedure;
+                mycmd.CommandText= "returnExercises";
+                DataTable dt = new DataTable(); 
+
+             
+                MySqlDataReader dataRead;
+                dataRead = mycmd.ExecuteReader();
+                dataRead.Read();
+                dt.Load(dataRead);
+
+                rwcnt = dt.Rows.Count;
+
+                distinctExercises = new string[rwcnt];
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var value = dr["Exercise"];
+                    distinctExercises[i] = value.ToString();
+                    i++;
+                }       
+            }
+        }
     }
 }
