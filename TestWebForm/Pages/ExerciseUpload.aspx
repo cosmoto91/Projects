@@ -54,9 +54,17 @@
            <asp:TextBox ID="uploadTextBox6" runat="server"></asp:TextBox>
            <br />
            <br />
-           <asp:Button ID="uploadButton2" runat="server" Text="Submit new exercise" OnClick="uploadButton2_Click"/><asp:Label ID="uploadLabel10" runat="server" Text="Success" Visible="false"></asp:Label>
-
-
+           <asp:Button ID="uploadButton2" runat="server" Text="Submit new exercise" OnClick="uploadButton2_Click"/><asp:Label ID="uploadLabel10" runat="server" Text="Success" Visible="false"></asp:Label>           
+           <br />
+           <br />           
+           <br />
+           <br />
+           <asp:Label ID="DashboardLabel1" runat="server" Text="DASHBOARD"></asp:Label>
+           <br />
+           <br />           
+           <br />
+           <br />
+           <asp:GridView ID="DashboardGridView1" runat="server"></asp:GridView> 
 
        </div>
 

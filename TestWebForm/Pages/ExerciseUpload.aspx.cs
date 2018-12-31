@@ -25,6 +25,16 @@ namespace TestWebForm
             uploadDropDownList1.DataSource = exerciseDD.ReturnedList;
             uploadDropDownList1.DataBind();
 
+            //populating dashboard
+            PopulateDashboard1RM RMDash = new PopulateDashboard1RM();
+            DashboardGridView1.DataSource = RMDash.populate1RMDashboard();
+            DashboardGridView1.DataBind();
+
+            //uploadGridView1.DataSource = file.DisplayFile(destination + file.FileName);
+            //uploadGridView1.DataBind();
+
+
+
         }
         protected void uploadCalendar1_SelectionChanged(object sender, EventArgs e)
         {
@@ -40,11 +50,10 @@ namespace TestWebForm
 
             file.FileName = uploadFileUpload1.FileName;
             file.SaveFile(destination,uploadFileUpload1);
-            uploadGridView1.DataSource = file.DisplayFile(destination + file.FileName);
-            uploadGridView1.DataBind();
+            //uploadGridView1.DataSource = file.DisplayFile(destination + file.FileName);
+            //uploadGridView1.DataBind();
 
-           // dataCSV = saveFile.SaveExerciseFileToDatabase(Server.MapPath("~" + "\\Files\\exercise"));
-           dataCSV = file.SaveExerciseFileToDatabase(destination + file.FileName);
+            dataCSV = file.SaveExerciseFileToDatabase(destination + file.FileName);
             uploadLabel2.Text = dataCSV;
         }
 

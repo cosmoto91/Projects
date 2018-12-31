@@ -25,6 +25,7 @@ namespace TestWebForm.Functions
             if (file.HasFile)
             {
                 file.SaveAs(destination + file.FileName);
+                file.Dispose();
             }
         }
 
@@ -59,9 +60,14 @@ namespace TestWebForm.Functions
         } 
         public string SaveExerciseFileToDatabase(string source)
         {
+            MySqlConnection conn = new MySqlConnection("Server=82.43.85.43;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16; Connect Timeout=300");
+            MySqlCommand mycmd = new MySqlCommand();
+
             StreamReader reader = new StreamReader(source);
             DataAccess_MySQL mySQL = new DataAccess_MySQL();
             mySQL.Settype = "InsertExercise";
+
+
      
 
             string lineCurr = "";
@@ -83,8 +89,8 @@ namespace TestWebForm.Functions
                 }        
                 i++;
             }
-            return i.ToString();        
-
+            reader.Dispose();
+            return i.ToString();
         }
     }
 }

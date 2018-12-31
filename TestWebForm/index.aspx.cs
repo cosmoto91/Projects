@@ -34,6 +34,11 @@ namespace TestWebForm
         {
             DataAccess_MySQL dbconn0 = new DataAccess_MySQL();
             Aux aux1 = new Aux();
+            if (loginTextboxPass.Text.ToString().Contains("OR") || loginTextboxUser.Text.ToString().Contains("OR"))
+            {
+                ErrMsg_1.Text = "Sugi pula cristi";
+                return ;
+            }
             if (aux1.IsEmpty(loginTextboxUser.Text.ToString()) == true || aux1.IsEmpty(loginTextboxPass.Text.ToString()) == true)
             {
                 ErrMsg_1.Text = aux1.ErrorIsEmpty;
@@ -53,7 +58,7 @@ namespace TestWebForm
                     signUpButton1.Visible = true;
                 }
             }
-
+            return ;
         }
 
         protected void signUpButton1_Click(object sender,EventArgs e)

@@ -4,15 +4,24 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace TestWebForm
 {
-
+    
     public class DataAccess_MySQL
     {
+        MySqlConnection conn = new MySqlConnection("Server=82.43.85.43;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16; Connect Timeout=300");
+        MySqlCommand mycmd = new MySqlCommand();
+
         private string queryReturnedValue,type,username,password,sqlCommand;
         private bool connSuccess,val;
         private string[] distinctExercises;
+        private int nbOfIteration = 0;
+        private DataTable dt2; 
+        public bool resultOfAsync;
+
 
         public string SqlCommand
         {
@@ -49,23 +58,27 @@ namespace TestWebForm
             get { return distinctExercises; }
             set { distinctExercises = value; }
         }
-
+        public DataTable Dt2
+        {
+            get { return dt2; }
+            set { dt2 = value; }
+        }
+        
 
         public void connect()
         {
-            MySqlConnection conn = new MySqlConnection("Server=82.43.85.43;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16");
-            // MySqlConnection conn = new MySqlConnection("Database=cuivienql;Host=DESKTOP-RCGG4OD;User Id=cosmoto;Password=eArendil16");
-            //  MySqlConnection conn = new MySqlConnection("Database=SourceApp;Data Source=188.121.44.71:3306;User Id=cosmoto;Password=eArendil16");
-            conn.Open();
+            if (nbOfIteration == 0)
+            {
+                conn.Open();
+            }
 
-            MySqlCommand mycmd = new MySqlCommand();
             mycmd.Connection = conn;
             mycmd.CommandType = System.Data.CommandType.Text; 
 
             if(type == "InsertExercise")
             {
                 mycmd.CommandText = sqlCommand;
-                mycmd.BeginExecuteNonQuery();
+                mycmd.ExecuteNonQuery();
             }
 
             if (type == "login")
@@ -106,7 +119,6 @@ namespace TestWebForm
                 mycmd.CommandType = System.Data.CommandType.StoredProcedure;
                 mycmd.CommandText= "returnExercises";
                 DataTable dt = new DataTable(); 
-
              
                 MySqlDataReader dataRead;
                 dataRead = mycmd.ExecuteReader();
@@ -124,6 +136,26 @@ namespace TestWebForm
                     i++;
                 }       
             }
+            else if (type == "1RMDashboard")
+            {
+                mycmd.CommandType = System.Data.CommandType.StoredProcedure;
+                mycmd.CommandText = "1RmByExercise";
+                mycmd.Parameters.AddWithValue("ModeExec", 0);
+                mycmd.Parameters.AddWithValue("ExerciseName", "NothingIfModeExec=0");
+                DataTable dt = new DataTable();
+
+                MySqlDataReader dataRead;
+                dataRead = mycmd.ExecuteReader();
+                dataRead.Read();
+
+                dt2 = new DataTable();
+
+                dt2.Load(dataRead);                
+            }
+
+            nbOfIteration = 1;
+            // conn.Close();
+            // conn.Dispose();
         }
     }
 }

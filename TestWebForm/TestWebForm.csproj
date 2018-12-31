@@ -87,6 +87,7 @@
     <Content Include="Pages\ExerciseUpload.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\PopulateDashboard1RM.cs" />
     <Compile Include="Functions\PopulateDropDown.cs" />
     <Compile Include="Functions\FileHandler.cs" />
     <Compile Include="Functions\DataAccess_MySQL.cs" />
