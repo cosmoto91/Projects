@@ -51,6 +51,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -87,6 +88,7 @@
     <Content Include="Pages\ExerciseUpload.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\Populate1RmGraph.cs" />
     <Compile Include="Functions\PopulateDashboard1RM.cs" />
     <Compile Include="Functions\PopulateDropDown.cs" />
     <Compile Include="Functions\FileHandler.cs" />

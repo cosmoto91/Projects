@@ -39,7 +39,7 @@
            <br />
            <asp:Label ID="uploadLabel6" runat="server" Text="ExerciseName"></asp:Label>
            <br />
-           <asp:TextBox ID="uploadTextBox3" runat="server"></asp:TextBox> <asp:DropDownList ID="uploadDropDownList1" runat="server"></asp:DropDownList>
+           <asp:TextBox ID="uploadTextBox3" runat="server"></asp:TextBox> <asp:DropDownList ID="uploadDropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="uploadDropDownList1_SelectedIndexChanged"></asp:DropDownList>
            <br />
            <asp:Label ID="uploadLabel7" runat="server" Text="Reps"></asp:Label>
            <br />
@@ -65,7 +65,26 @@
            <br />
            <br />
            <asp:GridView ID="DashboardGridView1" runat="server"></asp:GridView> 
-
+           <br />           
+           <asp:Chart ID="Chart1" runat="server" Height="500px" OnLoad="Chart1_Load" Width="1108px">
+               <Series>
+                   <asp:Series ChartType="Line" Name="Series1" YValuesPerPoint="4">
+                   </asp:Series>
+               </Series>
+               <ChartAreas>
+                   <asp:ChartArea Name="ChartArea1">
+                   </asp:ChartArea>
+               </ChartAreas>
+           </asp:Chart>
+           <br />
+           <br />
+           <asp:GridView ID="GridView2" runat="server"></asp:GridView> 
+           <br />           
+           <br />
+           &nbsp;<br />           
+           <br />
+           <br />
+           <br />
        </div>
 
   </form>

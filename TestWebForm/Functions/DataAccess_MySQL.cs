@@ -137,20 +137,29 @@ namespace TestWebForm
                 }       
             }
             else if (type == "1RMDashboard")
-            {
+            {         
                 mycmd.CommandType = System.Data.CommandType.StoredProcedure;
                 mycmd.CommandText = "1RmByExercise";
                 mycmd.Parameters.AddWithValue("ModeExec", 0);
                 mycmd.Parameters.AddWithValue("ExerciseName", "NothingIfModeExec=0");
-                DataTable dt = new DataTable();
+                
+                MySqlDataReader dataRead;
+                dataRead = mycmd.ExecuteReader();
+            
+                dt2 = new DataTable();
+                dt2.Load(dataRead);                
+            }
+            else if (type == "1RMGraph")
+            {
+                mycmd.CommandType = System.Data.CommandType.StoredProcedure;
+                mycmd.CommandText = "1RMGraph";
+                mycmd.Parameters.AddWithValue("Exercise", "Deadlift");
 
                 MySqlDataReader dataRead;
                 dataRead = mycmd.ExecuteReader();
-                dataRead.Read();
 
                 dt2 = new DataTable();
-
-                dt2.Load(dataRead);                
+                dt2.Load(dataRead);
             }
 
             nbOfIteration = 1;

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TestWebForm.Functions;
+using System.Data;
 
 namespace TestWebForm
 {
@@ -26,15 +27,20 @@ namespace TestWebForm
             uploadDropDownList1.DataBind();
 
             //populating dashboard
+
             PopulateDashboard1RM RMDash = new PopulateDashboard1RM();
+
             DashboardGridView1.DataSource = RMDash.populate1RMDashboard();
             DashboardGridView1.DataBind();
 
-            //uploadGridView1.DataSource = file.DisplayFile(destination + file.FileName);
-            //uploadGridView1.DataBind();
 
+            ///////////////////
+            Populate1RmGraph RMDash2 = new Populate1RmGraph();
 
+            GridView2.DataSource = RMDash2.populate1RmGraph();
+            GridView2.DataBind();
 
+            
         }
         protected void uploadCalendar1_SelectionChanged(object sender, EventArgs e)
         {
@@ -72,6 +78,26 @@ namespace TestWebForm
 
             uploadDropDownList1.DataSource = exerciseDD.ReturnedList;
             uploadDropDownList1.DataBind();
+        }
+
+        protected void uploadDropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            uploadTextBox3.Text = uploadDropDownList1.SelectedItem.Text;
+        }
+
+        protected void Chart1_Load(object sender, EventArgs e)
+        {
+            string[] label = new string[] { "A", "B" };
+            int[] value_chart = new int[] { 100, 120 };
+
+            Populate1RmGraph RMDash = new Populate1RmGraph();
+
+            Chart1.DataSource = RMDash.populate1RmGraph();
+
+             Chart1.Series[0].XValueMember = "DateCreated";
+             Chart1.Series[0].YValueMembers = "RM";
+             Chart1.DataBind();
+            //Chart1.Series[0].Points.DataBindXY(label, value_chart);
         }
     }
 }
