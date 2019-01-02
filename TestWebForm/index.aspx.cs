@@ -4,18 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TestWebForm.Functions;
 
 namespace TestWebForm
 {
     public partial class TravelForm : System.Web.UI.Page
     {
 
-        string Qst, returnedMsg;
+        string Qst, returnedMsg,databaseResponse;
         bool isNumeric;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+        
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -23,24 +25,46 @@ namespace TestWebForm
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
-            if (RadioButton1.Checked == true)
-            {
-                Qst = "Question1 was selected";
-            }
-            else
-                Qst = "Question2 was selected";
-            isNumeric = int.TryParse(TextBox1.Text, out int n);
 
-            if (isNumeric == false)
-            {
-                returnedMsg = "Lenght of time must be in minutes only";
-            }
-            else
-                returnedMsg = "You spent " + TextBox1.Text + " minutes at the dealer" + " and more than that, " + Qst;
-
-            Label1.Text = returnedMsg;
         }
+
+        protected void loginButton1_Click(object sender,EventArgs e)
+        {
+            DataAccess_MySQL dbconn0 = new DataAccess_MySQL();
+            Aux aux1 = new Aux();
+            if (loginTextboxPass.Text.ToString().Contains("OR") || loginTextboxUser.Text.ToString().Contains("OR"))
+            {
+                ErrMsg_1.Text = "Sugi pula cristi";
+                return ;
+            }
+            if (aux1.IsEmpty(loginTextboxUser.Text.ToString()) == true || aux1.IsEmpty(loginTextboxPass.Text.ToString()) == true)
+            {
+                ErrMsg_1.Text = aux1.ErrorIsEmpty;
+            }
+            else
+            {
+                dbconn0.setUserName = loginTextboxUser.Text;
+                dbconn0.setPassword = loginTextboxPass.Text;
+                dbconn0.Settype = "login";
+                dbconn0.connect();
+
+                if (dbconn0.setconnSuccess == true)
+                    Response.Redirect("~/Pages/ExerciseUpload.aspx");
+                else
+                {
+                    ErrMsg_1.Text = "Invalid credentials if you want to create a new account, please click to SignUp button below";
+                    signUpButton1.Visible = true;
+                }
+            }
+            return ;
+        }
+
+        protected void signUpButton1_Click(object sender,EventArgs e)
+        {
+            Response.Redirect("~/Pages/SignUp_page.aspx");
+        }
+
     }
 }
