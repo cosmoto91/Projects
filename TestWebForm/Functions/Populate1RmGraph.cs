@@ -12,11 +12,12 @@ namespace TestWebForm.Functions
 {
     public class Populate1RmGraph
     {
-        public DataTable populate1RmGraph()
+        public DataTable populate1RmGraph(string exercise)
         {
 
             DataAccess_MySQL mySQL = new DataAccess_MySQL();
             mySQL.Settype = "1RMGraph";
+            mySQL.ExerciseType = exercise;
             mySQL.connect();
 
             return mySQL.Dt2;

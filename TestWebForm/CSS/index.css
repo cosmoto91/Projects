@@ -1,0 +1,45 @@
+﻿.background-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-image: url('../Images/index_background.jpg');
+    width: 1200px;
+    height: 800px;
+    -webkit-filter: blur(5px);
+}
+.loginUser{
+    margin:30px;
+    padding:10px;
+    font-size:20px;
+    color:orangered;
+}
+.loginPass {
+    margin: 30px;
+    padding: 10px;
+    font-size: 20px;
+    color: orangered;
+}
+.loginDivButtton {
+    margin: 30px;
+    padding: 10;
+}
+.loginButton1 {
+    margin: 30px;
+    padding: 10;
+    color: black;
+    font-weight:900;
+    font-size: 30px;
+    background-color:orangered;
+    font-family:Calibri;
+}
+.loginForm {
+    display:block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin-left: 20px;
+    margin-right: 20px;
+    position:center;
+}

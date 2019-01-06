@@ -6,41 +6,50 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TestWebForm.Functions;
 using System.Data;
+using System.Web.UI.DataVisualization.Charting;
+
 
 namespace TestWebForm
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        string selectedExercise;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Default values
 
             uploadTextBox1.Text = DateTime.Now.ToString().Substring(0,10);
             uploadTextBox2.Text = DateTime.Now.ToString().Substring(11,5);
-
-            //populating drop down with Exercise types
-            PopulateDropDown exerciseDD = new PopulateDropDown();
-            exerciseDD.Type = "AllDistinctExercises";
-            exerciseDD.populate();
-
-            uploadDropDownList1.DataSource = exerciseDD.ReturnedList;
-            uploadDropDownList1.DataBind();
-
-            //populating dashboard
-
-            PopulateDashboard1RM RMDash = new PopulateDashboard1RM();
-
-            DashboardGridView1.DataSource = RMDash.populate1RMDashboard();
-            DashboardGridView1.DataBind();
-
-
-            ///////////////////
-            Populate1RmGraph RMDash2 = new Populate1RmGraph();
-
-            GridView2.DataSource = RMDash2.populate1RmGraph();
-            GridView2.DataBind();
-
+            if (!Page.IsPostBack)
+            {
+                //populating drop down with Exercise types
+                PopulateDropDown exerciseDD = new PopulateDropDown();
+                exerciseDD.Type = "AllDistinctExercises";
+                exerciseDD.populate();
+           
+                uploadDropDownList1.DataSource = exerciseDD.ReturnedList;
+                uploadDropDownList1.DataBind();
             
+                //populating dashboard
+
+                PopulateDashboard1RM RMDash = new PopulateDashboard1RM();
+
+                DashboardGridView1.DataSource = RMDash.populate1RMDashboard();
+                DashboardGridView1.DataBind();
+
+                //initially populating graph
+                Populate1RmGraph RMDashGraph = new Populate1RmGraph();
+
+                Chart1.DataSource = RMDashGraph.populate1RmGraph("Deadlift");
+
+                Chart1.Series[0].XValueMember = "DateCreated";
+                Chart1.Series[0].YValueMembers = "RM";
+                Chart1.DataBind();
+
+            }
+
+
+
         }
         protected void uploadCalendar1_SelectionChanged(object sender, EventArgs e)
         {
@@ -56,8 +65,8 @@ namespace TestWebForm
 
             file.FileName = uploadFileUpload1.FileName;
             file.SaveFile(destination,uploadFileUpload1);
-            //uploadGridView1.DataSource = file.DisplayFile(destination + file.FileName);
-            //uploadGridView1.DataBind();
+            uploadGridView1.DataSource = file.DisplayFile(destination + file.FileName);
+            uploadGridView1.DataBind();
 
             dataCSV = file.SaveExerciseFileToDatabase(destination + file.FileName);
             uploadLabel2.Text = dataCSV;
@@ -83,21 +92,29 @@ namespace TestWebForm
         protected void uploadDropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             uploadTextBox3.Text = uploadDropDownList1.SelectedItem.Text;
+            selectedExercise = uploadTextBox3.Text;
+            Chart1_Load(Chart1, null);
+        
         }
 
         protected void Chart1_Load(object sender, EventArgs e)
         {
-            string[] label = new string[] { "A", "B" };
-            int[] value_chart = new int[] { 100, 120 };
+            if (selectedExercise != null)
+            {
+                
+                uploadTextBox3.Text = uploadDropDownList1.SelectedItem.Text;
+                Populate1RmGraph RMDash = new Populate1RmGraph();
 
-            Populate1RmGraph RMDash = new Populate1RmGraph();
+                // Chart1.ChartAreas[0].AxisY.IntervalAutoMode = IntervalAutoMode.FixedCount;
+                Chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
+                Chart1.ChartAreas[0].AxisX.Interval = 2;
 
-            Chart1.DataSource = RMDash.populate1RmGraph();
+                Chart1.DataSource = RMDash.populate1RmGraph(selectedExercise);
 
-             Chart1.Series[0].XValueMember = "DateCreated";
-             Chart1.Series[0].YValueMembers = "RM";
-             Chart1.DataBind();
-            //Chart1.Series[0].Points.DataBindXY(label, value_chart);
+                Chart1.Series[0].XValueMember = "DateCreated";
+                Chart1.Series[0].YValueMembers = "RM";
+                Chart1.DataBind();
+            }
         }
     }
 }

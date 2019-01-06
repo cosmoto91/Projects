@@ -15,12 +15,11 @@ namespace TestWebForm
         MySqlConnection conn = new MySqlConnection("Server=82.43.85.43;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16; Connect Timeout=300");
         MySqlCommand mycmd = new MySqlCommand();
 
-        private string queryReturnedValue,type,username,password,sqlCommand;
+        private string queryReturnedValue,type,exerciseType,username,password,sqlCommand;
         private bool connSuccess,val;
         private string[] distinctExercises;
         private int nbOfIteration = 0;
         private DataTable dt2; 
-        public bool resultOfAsync;
 
 
         public string SqlCommand
@@ -33,6 +32,11 @@ namespace TestWebForm
         {
             get { return queryReturnedValue; }
             set { queryReturnedValue = value; }
+        }
+        public string ExerciseType
+        {
+            get { return exerciseType; }
+            set { exerciseType = value; }
         }
         public string Settype
         {
@@ -153,7 +157,7 @@ namespace TestWebForm
             {
                 mycmd.CommandType = System.Data.CommandType.StoredProcedure;
                 mycmd.CommandText = "1RMGraph";
-                mycmd.Parameters.AddWithValue("Exercise", "Deadlift");
+                mycmd.Parameters.AddWithValue("Exercise", ExerciseType);
 
                 MySqlDataReader dataRead;
                 dataRead = mycmd.ExecuteReader();
