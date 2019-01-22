@@ -85,6 +85,8 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\cuivienql.co.uk - Web Deploy.pubxml" />
     <Content Include="CSS\exerciseUpload.css" />
+    <Content Include="Files\boom.png" />
+    <Content Include="Files\circle_plus.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -147,6 +149,8 @@
     <Content Include="Pages\ExerciseUpload.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\PopulateDashboard1RMStar.cs" />
+    <Compile Include="Functions\PopulateProgressChart.cs" />
     <Compile Include="Functions\Populate1RmGraph.cs" />
     <Compile Include="Functions\PopulateDashboard1RM.cs" />
     <Compile Include="Functions\PopulateDropDown.cs" />
@@ -176,9 +180,7 @@
       <DependentUpon>ExerciseUpload.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Files\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>

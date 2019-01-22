@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
-  <title>Bootstrap Example</title>
+  <title>Exercise Landing</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,23 +17,8 @@
 <body>
    
     <form id="form1" runat="server">
-    
-    <div class="row">
-          <div class="col-sm-4">.col-sm-4 A</div>
-          <div class="col-sm-4">.col-sm-4 B</div>
-          <div class="col-sm-4">.col-sm-4 C</div>
-          <div class="col-sm-4">.col-sm-4 D</div>
-    </div>
-    <div class="row">
-          <div class="col-sm-12">Just one column</div>
-    </div>
-
 
     <div class="container">
-        <h1>My First Bootstrap Page</h1>
-        <p>This is some text.</p> 
-    
-
         <div class="background-image"></div>
         <div class="loginForm">
 

@@ -60,15 +60,16 @@ namespace TestWebForm.Functions
         } 
         public string SaveExerciseFileToDatabase(string source)
         {
-            MySqlConnection conn = new MySqlConnection("Server=82.43.85.43;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16; Connect Timeout=300");
+            MySqlConnection conn = new MySqlConnection("Server=mysql-arda.cbwsnspkbqvp.eu-west-2.rds.amazonaws.com;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16; Connect Timeout=300");
             MySqlCommand mycmd = new MySqlCommand();
 
             StreamReader reader = new StreamReader(source);
             DataAccess_MySQL mySQL = new DataAccess_MySQL();
             mySQL.Settype = "InsertExercise";
 
+            mySQL.SqlCommand = "TRUNCATE TABLE web.exercise";
+            mySQL.connect();
 
-     
 
             string lineCurr = "";
             string[] item   = new string[] {"one"};
@@ -84,7 +85,7 @@ namespace TestWebForm.Functions
           
                 if (i > 0)
                 {
-                    mySQL.SqlCommand = "INSERT INTO web.Exercise(Date,Time,Exercise,Reps,Weight) VALUES('" + item[0] + "','" + item[1] + "','" + item[2] + "','" + item[3] + "','" + item[4] + "')";
+                    mySQL.SqlCommand = "INSERT INTO web.exercise(Date,Time,Exercise,Reps,Weight) VALUES('" + item[0] + "','" + item[1] + "','" + item[2] + "','" + item[3] + "','" + item[4] + "')";
                     mySQL.connect();
                 }        
                 i++;

@@ -43,3 +43,8 @@
     margin-right: 20px;
     position:center;
 }
+.table {
+    max-width: none;
+    table-layout: fixed;
+    word-wrap: break-word;
+}

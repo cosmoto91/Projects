@@ -12,7 +12,7 @@ namespace TestWebForm
     
     public class DataAccess_MySQL
     {
-        MySqlConnection conn = new MySqlConnection("Server=82.43.85.43;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16; Connect Timeout=300");
+        MySqlConnection conn = new MySqlConnection("Server=mysql-arda.cbwsnspkbqvp.eu-west-2.rds.amazonaws.com;Database=web;Port=3306;User Id=cosmoto;Password=eArendil16; Connect Timeout=300");
         MySqlCommand mycmd = new MySqlCommand();
 
         private string queryReturnedValue,type,exerciseType,username,password,sqlCommand;
@@ -153,6 +153,17 @@ namespace TestWebForm
                 dt2 = new DataTable();
                 dt2.Load(dataRead);                
             }
+            else if (type == "1RMDashboardStar")
+            {
+                mycmd.CommandType = System.Data.CommandType.StoredProcedure;
+                mycmd.CommandText = "1RM_Star";
+
+                MySqlDataReader dataRead;
+                dataRead = mycmd.ExecuteReader();
+
+                dt2 = new DataTable();
+                dt2.Load(dataRead);
+            }
             else if (type == "1RMGraph")
             {
                 mycmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -165,7 +176,18 @@ namespace TestWebForm
                 dt2 = new DataTable();
                 dt2.Load(dataRead);
             }
+            else if (type == "ProgChart")
+            {
+                mycmd.CommandType = System.Data.CommandType.StoredProcedure;
+                mycmd.CommandText = "Progress_Perc";
+                mycmd.Parameters.AddWithValue("pExercise", ExerciseType);
 
+                MySqlDataReader dataRead;
+                dataRead = mycmd.ExecuteReader();
+
+                dt2 = new DataTable();
+                dt2.Load(dataRead);
+            }
             nbOfIteration = 1;
             // conn.Close();
             // conn.Dispose();
