@@ -7,7 +7,7 @@ position: center;
 }
 .sidenav {
 height: 100%;
-width: 200px;
+width: 20px;
 position: fixed;
 z-index: 1;
 top: 0;
@@ -16,18 +16,18 @@ background-color: #111;
 overflow-x: hidden;
 padding-top: 20px;
 }
-
+/*
 .sidenav a {
-padding: 6px 6px 6px 32px;
+padding: 10px 10px 10px 10px;
 text-decoration: none;
 font-size: 25px;
 color: #818181;
-display: block;
+display:flex;
 }
-
+    */
 .main {
-margin-left:200px; /* Same as the width of the sidenav */
-padding-left:10px;
+margin-left:20px; /* Same as the width of the sidenav */
+padding-left:20px;
 }
 #AllExercises {
     height: 320px;
