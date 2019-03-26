@@ -159,12 +159,12 @@ namespace TestWebForm
             selectedExercise = row.Cells[1].Text;
             Chart1_Load(Chart1, null);
             Chart2_Load(Chart2, null);
-            ClientScript.RegisterStartupScript(GetType(), "hwa", "openCity(event, 'Dashboard');", true);
+            ClientScript.RegisterStartupScript(GetType(), "hwa", "openSection(event, 'Dashboard');", true);
         }
 
         protected void imageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "hwa", "openCity(event, 'Tungsten');", true);
+            ClientScript.RegisterStartupScript(GetType(), "hwa", "openSection(event, 'Tungsten');", true);
         }
     }
 }
