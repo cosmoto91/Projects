@@ -66,10 +66,7 @@ namespace TestWebForm
                 j = DashboardGridView2.Rows.Count;
             }
         }
-        protected void uploadCalendar1_SelectionChanged(object sender, EventArgs e)
-        {
-            uploadTextBox1.Text = uploadCalendar1.SelectedDate.ToString().Substring(0,10);
-        }
+     
         protected void uploadButton1_Click(object sender,EventArgs e)
         {
             if (uploadFileUpload1.HasFile == true)
@@ -159,12 +156,34 @@ namespace TestWebForm
             selectedExercise = row.Cells[1].Text;
             Chart1_Load(Chart1, null);
             Chart2_Load(Chart2, null);
-            ClientScript.RegisterStartupScript(GetType(), "hwa", "openSection(event, 'Dashboard');", true);
+
+            //Populate HistoryGridview dashboard
+            PopulateExerciseHistory historyDash = new PopulateExerciseHistory();
+            DataTable dtHistory = new DataTable();
+
+            dtHistory.Columns.Add("Date");
+            dtHistory.Columns.Add("Time");
+            dtHistory.Columns.Add("Reps");
+            dtHistory.Columns.Add("Weight");
+
+            dtHistory = historyDash.populateExerciseHistory();
+
+            ExerciseHistoryGridView.DataSource = dtHistory;
+            ExerciseHistoryGridView.DataBind();
+
+            //Show dashboard & History
+
+            ClientScript.RegisterStartupScript(GetType(), "hwa", "openSection(event, 'Dashboard',1);", true);
         }
 
         protected void imageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "hwa", "openSection(event, 'Tungsten');", true);
+            ClientScript.RegisterStartupScript(GetType(), "hwa", "openSection(event, 'Tungsten',0);", true);
+        }
+
+        protected void ExerciseHistoryGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

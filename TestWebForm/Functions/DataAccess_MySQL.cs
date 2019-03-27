@@ -188,6 +188,20 @@ namespace TestWebForm
                 dt2 = new DataTable();
                 dt2.Load(dataRead);
             }
+
+            else if (type == "ExerciseHistory")
+            {
+                mycmd.CommandType = System.Data.CommandType.StoredProcedure;
+                mycmd.CommandText = "HistoryPerExercise";
+                mycmd.Parameters.AddWithValue("pExerciseID", 2);
+
+                MySqlDataReader dataRead;
+                dataRead = mycmd.ExecuteReader();
+
+                dt2 = new DataTable();
+                dt2.Load(dataRead);
+            }
+
             nbOfIteration = 1;
             // conn.Close();
             // conn.Dispose();

@@ -94,24 +94,6 @@ namespace TestWebForm {
         protected global::System.Web.UI.WebControls.Label uploadLabel3;
         
         /// <summary>
-        /// uploadCalendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar uploadCalendar1;
-        
-        /// <summary>
-        /// uploadLabel4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label uploadLabel4;
-        
-        /// <summary>
         /// uploadTextBox1 control.
         /// </summary>
         /// <remarks>
@@ -119,15 +101,6 @@ namespace TestWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox uploadTextBox1;
-        
-        /// <summary>
-        /// uploadLabel5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label uploadLabel5;
         
         /// <summary>
         /// uploadTextBox2 control.
@@ -272,5 +245,14 @@ namespace TestWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart2;
+        
+        /// <summary>
+        /// ExerciseHistoryGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ExerciseHistoryGridView;
     }
 }

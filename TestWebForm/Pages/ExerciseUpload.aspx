@@ -14,7 +14,7 @@
         google.charts.load('current', {packages: ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
+      /*  function drawChart() {
       // Define the chart to be drawn.
             var data = new google.visualization.DataTable();
             
@@ -32,7 +32,7 @@
 //      var chart = new google.visualization.PieChart(document.getElementById('ProgressPercChart'));
       chart.draw(data, null);
     }
-
+    */
     </script>
 
     <title></title>
@@ -42,9 +42,9 @@
       
        <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a class="tablinks" href="#" onclick="openSection(event, 'London')" id="defaultOpen">Home</a>
-          <a class="tablinks" href="#" onclick="openSection(event, 'Paris')">Add items</a>
-          <a class="tablinks" href="#" onclick="openSection(event, 'Dashboard')">Dashboard</a>
+          <a class="tablinks" href="#" onclick="openSection(event, 'London',0)" id="defaultOpen">Home</a>
+          <a class="tablinks" href="#" onclick="openSection(event, 'Paris',0)">Add items</a>
+          <a class="tablinks" href="#" onclick="openSection(event, 'Dashboard',0)">Dashboard</a>
        </div>
 
         <div id="main">
@@ -77,19 +77,13 @@
                 </div>
                    <asp:GridView ID="uploadGridView1" runat="server"></asp:GridView> 
                    <br />
-                   <br />
                    <asp:Label ID="uploadLabel2" runat="server"></asp:Label>
-                   <br />
                    <br />
                    <asp:Label ID="uploadLabel3" runat="server" Text="Insert a new exercise"></asp:Label>
                    <br />
-                   <asp:Calendar ID="uploadCalendar1" runat="server" OnSelectionChanged="uploadCalendar1_SelectionChanged" ></asp:Calendar>
-                   <br />
-                   <asp:Label ID="uploadLabel4" runat="server" Text="Choose a date, default is today"></asp:Label>
                    <br />
                    <asp:TextBox ID="uploadTextBox1" runat="server"></asp:TextBox>
-                   <br />
-                   <asp:Label ID="uploadLabel5" runat="server" Text="Choose a time, default is now"></asp:Label>
+                   <br />              
                    <br />
                    <asp:TextBox ID="uploadTextBox2" runat="server"></asp:TextBox>
                    <br />
@@ -123,7 +117,7 @@
 
                    <div class="row">
                        <div class="col-sm-8" style="background-color:lightgrey; border:groove;border-color:greenyellow">
-                            <asp:Chart ID="Chart1" runat="server" Height="387px" OnLoad="Chart1_Load" Width="929px">
+                            <asp:Chart ID="Chart1" runat="server" Height="400px" OnLoad="Chart1_Load" Width="929px">
                                 <Series>
                                     <asp:Series ChartType="Line" Name="Series1" YValuesPerPoint="14" IsValueShownAsLabel="true">
                                     </asp:Series>
@@ -134,13 +128,13 @@
                                 </ChartAreas>
                             </asp:Chart>    
                         </div>
-                       <div class="col-sm-4" style="background-color:lightgrey; border:groove;border-color:greenyellow">
+                       <div class="col-sm-4" style="background-color:lightgrey; border:groove;border-color:greenyellow; height:400px;overflow:auto">
                            <asp:GridView    ID="DashboardGridView2" runat="server" 
                                             AutoGenerateColumns="false" 
                                             autogenerateselectbutton="True"
                                             selectedindex="1"
                                             EmptyDataText="No data available" 
-                                            class="table table-stripped table-dark table-bordered table-hover table-sm table-responsive-sm" 
+                                            class="table table-stripped table-dark table-bordered table-hover table-sm table-responsive-sm height: 500px" 
                                             OnSelectedIndexChanged="GridView2_SelectedIndexChanged"
                            >
                                <Columns>
@@ -166,6 +160,19 @@
                    </asp:Chart>  
                    <div id="ProgressPercChart"></div>
                </div> 
+      
+               <div id="Vanadium" class="tabcontent" style="height:400px;overflow:auto">
+                   <asp:GridView ID="ExerciseHistoryGridView" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="ExerciseHistoryGridView_SelectedIndexChanged">
+                       <Columns>
+                           <asp:BoundField DataField="Date" HeaderText ="Date" ReadOnly="true" />
+                           <asp:BoundField DataField="Time" HeaderText ="Time" ReadOnly="true" />
+                           <asp:BoundField DataField="Reps" HeaderText ="Rep #" ReadOnly="true" />
+                           <asp:BoundField DataField="Weight" HeaderText ="Weight" ReadOnly="true" />
+                       </Columns>
+                       
+    
+                   </asp:GridView>
+               </div>
         </div>     
 
       <script>
@@ -181,7 +188,7 @@
           document.body.style.backgroundColor = "white";
         }
 
-        function openSection(evt, cityName) {
+        function openSection(evt, cityName,mode) {
           var i, tabcontent, tablinks;
           tabcontent = document.getElementsByClassName("tabcontent");
           for (i = 0; i < tabcontent.length; i++) {
@@ -190,8 +197,12 @@
           tablinks = document.getElementsByClassName("tablinks");
           for (i = 0; i < tablinks.length; i++) {
             tablinks[i].className = tablinks[i].className.replace(" active", "");
-          }
-            document.getElementById(cityName).style.display = "block";
+            }                  
+            document.getElementById(cityName).style.display = "block";   
+            if (mode == 1) {
+                document.getElementById("Vanadium").style.display = "block"; 
+            }
+              
             document.getElementById("London").style.display = "block";
             document.getElementById(cityName).style.marginTop = "15px";
             evt.currentTarget.className += " active";       

@@ -149,6 +149,7 @@
     <Content Include="Pages\ExerciseUpload.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functions\PopulateExerciseHistory.cs" />
     <Compile Include="Functions\PopulateDashboard1RMStar.cs" />
     <Compile Include="Functions\PopulateProgressChart.cs" />
     <Compile Include="Functions\Populate1RmGraph.cs" />
